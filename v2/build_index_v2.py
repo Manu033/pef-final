@@ -2,206 +2,179 @@
 """
 build_index_v2.py
 -----------------
-Construye un índice híbrido para búsqueda semántica y por palabras clave desde PDFs.
+Construye:
+- Índice semántico FAISS
+- Índice léxico invertido
+- meta.json con chunks por página
 
-Características nuevas respecto a la versión anterior:
-- Generadores para recorrer PDFs página a página sin cargar todo en memoria.
-- Batching para generar embeddings por lotes.
-- Concurrencia (multiprocessing) para extraer texto de múltiples PDFs en paralelo.
-- Índice invertido (hashing) para búsqueda lexical clásica (términos).
-- Docstrings y estilo PEP 8.
-- Opción de profiling con cProfile.
+Compatible con app_v2.py
 """
+
 from __future__ import annotations
-
-import argparse
-import cProfile
-import json
 import os
-from collections import defaultdict
-from concurrent.futures import ProcessPoolExecutor, as_completed
+import json
 from pathlib import Path
-from typing import Dict, Generator, Iterable, List, Tuple
+from typing import List, Dict, Iterable
 
-import faiss  # type: ignore
-import fitz  # PyMuPDF  # type: ignore
 import numpy as np
+import faiss
 from sentence_transformers import SentenceTransformer
-
+import pdfplumber
+import re
 
 # ===========================
-# Configuración
+# CONFIG
 # ===========================
-DATA_DIR = "../data_pdfs"
-OUT_DIR = "index_store"
+INDEX_DIR = "index_store"
 EMB_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
-# Segmentación de texto
 CHUNK_SIZE = 800
-OVERLAP = 200
-
-# Batching para embeddings
-BATCH_SIZE = 32
+CHUNK_OVERLAP = 200
 
 
 # ===========================
-# Utilidades
+# CHUNKING
 # ===========================
-def extract_pages_from_pdf(path: str) -> Generator[Tuple[int, str], None, None]:
+def chunk_text(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> Iterable[str]:
     """
-    Generador que produce (page_number, text) para cada página del PDF.
-
-    Se evita construir una lista completa en memoria.
+    Divide el texto en chunks solapados.
+    Si el texto es más corto que size → devuelve un solo chunk.
     """
-    with fitz.open(path) as doc:
-        for i, page in enumerate(doc):
-            yield (i + 1, page.get_text("text").replace("\n", " "))
-
-
-def chunk_text(
-    text: str, size: int = CHUNK_SIZE, overlap: int = OVERLAP
-) -> Iterable[str]:
-    """
-    Divide un texto en fragmentos (chunks) con solapamiento.
-
-    Args:
-        text: Texto de entrada.
-        size: Tamaño máximo del chunk.
-        overlap: Cantidad de caracteres compartidos entre chunks consecutivos.
-
-    Yields:
-        Fragmentos de texto.
-    """
-    if size <= 0:
-        raise ValueError("size must be > 0")
-    if overlap < 0 or overlap >= size:
-        raise ValueError("overlap must be in [0, size)")
-
-    start = 0
-    n = len(text)
-    step = size - overlap
-    while start < n:
-        end = min(n, start + size)
-        yield text[start:end]
-        start += step
-
-
-def build_inverted_index(corpus: List[Dict]) -> Dict[str, List[int]]:
-    """
-    Crea un índice invertido simple (hashing) {termino -> [ids_de_fragmento]}.
-    """
-    inverted: Dict[str, set] = defaultdict(set)
-    for i, doc in enumerate(corpus):
-        # tokenización mínima; puede reemplazarse por una más sofisticada
-        for word in doc["text"].split():
-            token = word.strip().lower()
-            if token:
-                inverted[token].add(i)
-
-    # Convertimos sets a listas ordenadas para reducir tamaño en disco
-    return {term: sorted(list(ids)) for term, ids in inverted.items()}
-
-
-def encode_in_batches(
-    model: SentenceTransformer, texts: List[str], batch_size: int = BATCH_SIZE
-) -> np.ndarray:
-    """
-    Genera embeddings en lotes para reducir uso de RAM.
-    """
-    emb_list: List[np.ndarray] = []
-    for i in range(0, len(texts), batch_size):
-        batch = texts[i : i + batch_size]
-        emb_batch = model.encode(batch, normalize_embeddings=True)
-        emb_list.append(np.asarray(emb_batch, dtype="float32"))
-    return np.vstack(emb_list) if emb_list else np.zeros((0, 384), dtype="float32")
-
-
-def process_pdf_to_corpus(pdf_path: Path) -> List[Dict]:
-    """
-    Procesa un PDF a una lista de fragmentos indexables.
-    """
-    items: List[Dict] = []
-    for page_num, text in extract_pages_from_pdf(str(pdf_path)):
-        for chunk in chunk_text(text):
-            items.append({"title": pdf_path.stem, "page": page_num, "text": chunk})
-    return items
-
-
-def main(profile: bool = False) -> None:
-    """
-    Punto de entrada: construye índices FAISS e invertido.
-    """
-    os.makedirs(OUT_DIR, exist_ok=True)
-    pdf_paths = list(Path(DATA_DIR).glob("*.pdf"))
-    if not pdf_paths:
-        print(f"[WARN] No se encontraron PDFs en {DATA_DIR}.")
+    text = text.strip()
+    if len(text) <= size:
+        yield text
         return
 
-    print(">> Extrayendo texto (paralelo)...")
-    corpus: List[Dict] = []
-    # Concurrencia: múltiples PDFs en paralelo
-    with ProcessPoolExecutor() as ex:
-        futures = {ex.submit(process_pdf_to_corpus, p): p for p in pdf_paths}
-        for fut in as_completed(futures):
-            part = fut.result()
-            corpus.extend(part)
-            print(f"   + {len(part):4d} chunks de {futures[fut].name}")
+    step = size - overlap
+    i = 0
+    while i < len(text):
+        yield text[i : i + size]
+        i += step
 
-    print(f">> Total de fragmentos: {len(corpus)}")
 
-    print(">> Cargando modelo de embeddings...")
+# ===========================
+# ÍNDICE INVERTIDO
+# ===========================
+def tokenize(text: str) -> List[str]:
+    """Tokenización básica (minúsculas + elimina no letras)."""
+    tokens = re.findall(r"[a-zA-ZáéíóúÁÉÍÓÚñÑ]+", text.lower())
+    return tokens
+
+
+def build_inverted_index(meta: List[Dict]) -> Dict[str, List[int]]:
+    """
+    Construye un índice invertido:
+        palabra → [ids de chunks donde aparece]
+    IDs sin duplicados.
+    """
+    inverted: Dict[str, set] = {}
+
+    for i, entry in enumerate(meta):
+        tokens = tokenize(entry["text"])
+        for tok in tokens:
+            if tok not in inverted:
+                inverted[tok] = set()
+            inverted[tok].add(i)
+
+    # convertimos sets a listas
+    return {word: sorted(list(ids)) for word, ids in inverted.items()}
+
+
+# ===========================
+# EXTRAER PDF → META
+# ===========================
+def extract_chunks_from_pdf(pdf_path: str) -> List[Dict]:
+    """
+    Devuelve lista de:
+        { "title": str, "page": int, "text": str }
+    por cada chunk.
+    """
+    title = Path(pdf_path).stem
+    meta_entries = []
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for page_num, page in enumerate(pdf.pages, start=1):
+            raw_text = page.extract_text() or ""
+            raw_text = raw_text.strip()
+
+            if not raw_text:
+                continue
+
+            for ch in chunk_text(raw_text):
+                meta_entries.append({
+                    "title": title,
+                    "page": page_num,
+                    "text": ch
+                })
+
+    return meta_entries
+
+
+# ===========================
+# MAIN INDEX BUILDER
+# ===========================
+def build_index(pdf_dir: str = "pdfs"):
+    """
+    Lee todos los PDFs en pdf_dir, genera:
+        - meta.json
+        - faiss.index
+        - inverted_index.json
+    """
+    os.makedirs(INDEX_DIR, exist_ok=True)
+
+    print("Cargando modelo de embeddings...")
     model = SentenceTransformer(EMB_MODEL)
 
-    print(">> Generando embeddings por lotes...")
-    texts = [c["text"] for c in corpus]
-    embeddings = encode_in_batches(model, texts, BATCH_SIZE)
+    all_meta: List[Dict] = []
 
-    print(">> Construyendo índice FAISS (inner product)...")
-    index = faiss.IndexFlatIP(embeddings.shape[1])
+    print(f"Buscando PDFs en {pdf_dir} ...")
+    pdf_files = sorted(Path(pdf_dir).glob("*.pdf"))
+
+    if not pdf_files:
+        raise RuntimeError(f"No hay PDFs en la carpeta {pdf_dir}")
+
+    # Extraer chunks
+    for pdf_path in pdf_files:
+        print(f"Procesando: {pdf_path.name}")
+        entries = extract_chunks_from_pdf(str(pdf_path))
+        all_meta.extend(entries)
+
+    print(f"Total de chunks: {len(all_meta)}")
+    
+    # Guardar metadata
+    with open(f"{INDEX_DIR}/meta.json", "w", encoding="utf-8") as f:
+        json.dump(all_meta, f, ensure_ascii=False, indent=2)
+
+    # ------------------------------
+    # FAISS INDEX
+    # ------------------------------
+    print("Generando embeddings...")
+    texts = [m["text"] for m in all_meta]
+    embeddings = model.encode(texts, normalize_embeddings=True)
+    embeddings = np.array(embeddings).astype("float32")
+
+    dim = embeddings.shape[1]
+    index = faiss.IndexFlatIP(dim)
+
+    print("Construyendo índice FAISS...")
     index.add(embeddings)
 
-    print(">> Construyendo índice invertido (hashing de términos)...")
-    inverted = build_inverted_index(corpus)
+    faiss.write_index(index, f"{INDEX_DIR}/faiss.index")
 
-    print(">> Guardando artefactos...")
-    faiss.write_index(index, os.path.join(OUT_DIR, "faiss.index"))
-    with open(os.path.join(OUT_DIR, "meta.json"), "w", encoding="utf-8") as f:
-        json.dump(corpus, f, ensure_ascii=False)
+    # ------------------------------
+    # INVERTED INDEX
+    # ------------------------------
+    print("Construyendo índice léxico...")
+    inv = build_inverted_index(all_meta)
 
-    with open(os.path.join(OUT_DIR, "inverted_index.json"), "w", encoding="utf-8") as f:
-        json.dump(inverted, f, ensure_ascii=False)
+    with open(f"{INDEX_DIR}/inverted_index.json", "w", encoding="utf-8") as f:
+        json.dump(inv, f, ensure_ascii=False, indent=2)
 
-    with open(os.path.join(OUT_DIR, "config.json"), "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "emb_model": EMB_MODEL,
-                "chunk_size": CHUNK_SIZE,
-                "overlap": OVERLAP,
-                "batch_size": BATCH_SIZE,
-            },
-            f,
-            ensure_ascii=False,
-            indent=2,
-        )
-
-    print("✅ Índices creados en", OUT_DIR)
+    print("\n🎉 Índices generados correctamente en index_store/")
 
 
+# ===========================
+# ENTRYPOINT
+# ===========================
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Construye índices híbridos para PDFs."
-    )
-    parser.add_argument(
-        "--profile", action="store_true", help="Habilita cProfile durante la ejecución."
-    )
-    args = parser.parse_args()
-
-    if args.profile:
-        with cProfile.Profile() as pr:
-            main(profile=True)
-        import pstats
-
-        stats = pstats.Stats(pr).sort_stats(pstats.SortKey.TIME)
-        stats.print_stats(20)
-    else:
-        main()
+    build_index("../data_pdfs")

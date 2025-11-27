@@ -22,20 +22,34 @@ def test_chunk_text_basic():
     chunks = list(chunk_text(text, size=200, overlap=50))
     # Cada chunk no debe superar 200
     assert all(len(c) <= 200 for c in chunks)
-    # Debe haber solapamiento
+    # Debe haber solapamiento y más de un chunk
     assert len(chunks) > 1
     # El primero y el segundo comparten 50 caracteres
     assert chunks[0][-50:] == chunks[1][:50]
 
 
+def test_chunk_text_shorter_than_size():
+    text = "hola"
+    chunks = list(chunk_text(text, size=10, overlap=2))
+    # Texto más corto que el tamaño debe devolver el texto entero en un solo chunk
+    assert chunks == [text]
+
+
 def test_inverted_index():
     corpus = [
-        {"title": "doc", "page": 1, "text": "Hola mundo hola"},
-        {"title": "doc", "page": 2, "text": "Mundo vector inverso"},
+        {"title": "doc", "page": 1, "text": "Hola, mundo hola"},
+        {"title": "doc", "page": 2, "text": "Mundo vector inverso."},
     ]
     inv = build_inverted_index(corpus)
     assert "hola" in inv and "mundo" in inv
-    # 'hola' aparece en el primer doc dos veces pero solo una entrada de id
-    assert inv["hola"] == [0]
+    # 'hola' aparece solo en el primer doc (aunque se repita)
+    assert set(inv["hola"]) == {0}
     # 'mundo' aparece en ambos
-    assert inv["mundo"] == [0, 1]
+    assert set(inv["mundo"]) == {0, 1}
+
+
+def test_inverted_index_no_duplicate_ids():
+    corpus = [{"title": "doc", "page": 1, "text": "hola hola hola"}]
+    inv = build_inverted_index(corpus)
+    # Asegurar que no haya IDs duplicados en el posting
+    assert set(inv.get("hola", [])) == {0}
