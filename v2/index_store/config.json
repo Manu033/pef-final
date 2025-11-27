@@ -1,0 +1,6 @@
+{
+  "emb_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunk_size": 800,
+  "overlap": 200,
+  "batch_size": 32
+}

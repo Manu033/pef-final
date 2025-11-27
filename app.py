@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 INDEX_DIR = "index_store"
 EMB_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 OLLAMA_MODEL = "gemma3:1b"
-TOP_K = 6
+TOP_K = 8
 
 
 @st.cache_resource
