@@ -133,5 +133,345 @@
     "title": "Estimación",
     "page": 26,
     "text": "La estimación de proyecto de software\nnunca puede ser una ciencia exacta,\npero una combinación de buenos\ndatos históricos y técnicas sistemáticas\npueden mejorar la precisión de la\nestimación."
+  },
+  {
+    "title": "Metricas",
+    "page": 1,
+    "text": "Métricas, medidas y mediciones\ndel software"
+  },
+  {
+    "title": "Metricas",
+    "page": 2,
+    "text": "Medida Medición Métrica\nEs una medida\ncuantitativa del grado\nEs el acto de\nen el que un sistema,\ndeterminar una\nProporciona un indicio componente o\nmedida.\ncuantitativo de la proceso posee un\nLa medición ocurre\nextensión, cantidad, atributo\ncomo resultado de la\ncapacidad o tamaño de determinado.\nrecolección de uno o\nalgún atributo de un\nEj: el número\nmás puntos de datos.\nproducto o proceso.\npromedio de errores\nEj: recolectar medidas\nEj: cantidad de errores que se encuentran\ndel número de\nen un componente de por revisión o el\nerrores de un\nsw número promedio de\ncomponente y una\nerrores que se\nprueba de unidad.\nencuentran por\nunidad de prueba."
+  },
+  {
+    "title": "Metricas",
+    "page": 3,
+    "text": "• Un ingeniero de software recolecta medidas y\ndesarrolla métricas de modo que se obtengan\nindicadores.\n• Un indicador es una métrica o combinación de\nmétricas que proporcionan comprensión\nacerca del proceso de software, el proyecto de\nsoftware o el producto en sí.\n• Permite ajustar el proceso, el proyecto o el\nproducto para hacer mejor las cosas."
+  },
+  {
+    "title": "Metricas",
+    "page": 4,
+    "text": "¿Por qué es importante medir?\n• Siempre habrá un elemento cualitativo en la creación del\nsoftware. El problema es que la valoración cualitativa tal\nvez no sea suficiente.\n• Se necesitan criterios objetivos que ayuden a guiar el\ndiseño de datos, arquitectura, interfaces y componentes.\n• Cuando se prueban, es necesaria la guía cuantitativa que\nayuda en la selección de los casos de prueba y de sus\nobjetivos. Las métricas de producto proporcionan una\nbase desde donde el análisis, el diseño, la codificación y\nlas pruebas pueden realizarse de manera más objetiva y\nvalorarse de modo más cuantitativo."
+  },
+  {
+    "title": "Metricas",
+    "page": 5,
+    "text": "¿Cuáles son los pasos de un proceso de\nmedición efectivo?\n1. Formulación. La derivación de medidas y métricas de\nsoftware apropiadas para la representación del software\nque se está construyendo.\n2. Recolección. Mecanismo que se usa para acumular datos\nrequeridos para derivar las métricas formuladas.\n3. Análisis. El cálculo de métricas y la aplicación de\nherramientas matemáticas.\n4. Interpretación. Evaluación de las métricas resultantes para\ncomprender la calidad de la representación.\n5. Retroalimentación. Recomendaciones derivadas de la\ninterpretación de las métricas del producto, transmitidas al\nequipo de software."
+  },
+  {
+    "title": "Metricas",
+    "page": 6,
+    "text": "Paradigma Meta/Pregunta/Métrica\n(MPM)\n• Es una técnica para identificar métricas\nsignificativas para cualquier parte del proceso de\nsoftware.\n1. Establecer una meta de medición explicita que\nsea especifica para la actividad del proceso o\npara la característica del producto que se quiera\nvalorar,\n2. Definir un conjunto de preguntas que deban\nresponderse con la finalidad de lograr la meta y\n3. identificar métricas bien formuladas que ayuden\na responder dichas preguntas."
+  },
+  {
+    "title": "Metricas",
+    "page": 7,
+    "text": "• Meta:\nAumentar el tráfico del sitio web a 25.000 visitas\nen el segundo trimestre."
+  },
+  {
+    "title": "Metricas",
+    "page": 8,
+    "text": "Preguntas:\n• ¿Cuántas visitas se obtuvo en el ultimo mes?\n• ¿Se realizan actualizaciones constantes de contenido en el sitio?\n• ¿Se realizan campañas de promoción en diferentes plataformas?\nEjemplo de métricas:\n• Páginas vistas únicas del sitio web (número de visitas) en un mes\n• Cantidad promedio de actualización de contenidos durante un mes\n• Cantidad de campañas realizadas en el primer trimestre\n• Rango de edades del publico objetivo realizado en campañas\n• Cantidad de regiones que alcanzan las campañas\n• Tiempo promedio de duración de las campañas"
+  },
+  {
+    "title": "Metricas",
+    "page": 9,
+    "text": "Atributos de las métricas de software\nefectivas\n1. Simple y calculable. Debe ser relativamente fácil aprender\ncómo derivar la métrica y su cálculo no debe demandar\nesfuerzo o tiempo excesivo.\n2. Empírica e intuitivamente convincente. Debe satisfacer\nlas nociones intuitivas del ingeniero acerca del atributo de\nproducto que se elabora (por ejemplo, una métrica que\nmide la cohesión del módulo debe aumentar en valor\nconforme aumenta el nivel de cohesión).\n3. Congruente y objetiva. Siempre debe producir resultados\nque no tengan ambigüedades. Una tercera parte\nindependiente debe poder derivar el mismo valor de\nmétrica usando la misma información acerca del software."
+  },
+  {
+    "title": "Metricas",
+    "page": 10,
+    "text": "Atributos de las métricas de software\nefectivas\n4. Constante en su uso de unidades y dimensiones. El cálculo\nmatemático de la métrica debe usar medidas que no conduzcan a\ncombinaciones extrañas de unidades. Por ejemplo, multiplicar\npersonas en los equipos de proyecto por variables de lenguaje de\nprogramación en el programa da como resultado una mezcla\nsospechosa de unidades que no son intuitivamente convincentes.\n5. Independiente del lenguaje de programación. Debe basarse en el\nmodelo de requerimientos, el modelo de diseño o la estructura\ndel programa en sí. No debe depender de la sintaxis o de la\nsemántica del lenguaje de programación.\n6. Un mecanismo efectivo para retroalimentación de alta calidad.\nDebe proporcionar información que pueda conducir a un producto\nfinal de mayor calidad."
+  },
+  {
+    "title": "Metricas",
+    "page": 11,
+    "text": "Métricas para el modelo de\nrequerimientos\nExaminan el modelo de requerimientos con la\nintención de predecir el “tamaño” del sistema\nresultante. En ocasiones, el tamaño es un indicador de\nla complejidad del diseño y casi siempre es un\nindicador creciente de codificación, integración y\nesfuerzo de pruebas."
+  },
+  {
+    "title": "Metricas",
+    "page": 12,
+    "text": "Métrica basada en funciones\n• La métrica de punto de función (PF) puede\nusarse de manera efectiva como medio para\nmedir la funcionalidad que entra a un sistema.\n• La métrica PF puede usarse para:\n– Estimar el costo o esfuerzo requerido para diseñar,\ncodificar y probar el software.\n– Predecir el número de errores que se encontrarán\ndurante las pruebas, y\n– Prever el número de componentes y/o de líneas de\ncódigo proyectadas en el sistema implementado."
+  },
+  {
+    "title": "Metricas",
+    "page": 13,
+    "text": "• Los puntos de función se derivan usando una\nrelación empírica basada en medidas\ncontables del dominio de información del\nsoftware y en valoraciones cualitativas de la\ncomplejidad del software."
+  },
+  {
+    "title": "Metricas",
+    "page": 14,
+    "text": "Los valores de dominio de información son:\n• Número de entradas externas (EE). Cada entrada externa se origina de un usuario\no se transmite desde otra aplicación, y proporciona distintos datos orientados a\naplicación o información de control. Con frecuencia, las entradas se usan para\nactualizar archivos lógicos internos (ALI). Las entradas deben distinguirse de las\nconsultas, que se cuentan por separado. Ej: ABM, pantallas en donde el usuario\ningresa datos.\n• Número de salidas externas (SE). Cada salida externa son datos derivados dentro\nde la aplicación que ofrecen información al usuario. En este contexto, salida\nexterna se refiere a reportes, envío de notificación, mensajes de error, etc.\n• Número de consultas externas (CE). Una consulta externa se define como una\nentrada en línea que da"
+  },
+  {
+    "title": "Metricas",
+    "page": 14,
+    "text": "este contexto, salida\nexterna se refiere a reportes, envío de notificación, mensajes de error, etc.\n• Número de consultas externas (CE). Una consulta externa se define como una\nentrada en línea que da como resultado la generación de alguna respuesta de\nsoftware inmediata en la forma de una salida en línea (con frecuencia recuperada\nde un ALI).\n• Número de archivos lógicos internos (ALI). Cada archivo lógico interno es un\nagrupamiento lógico de datos que reside dentro de la frontera de la aplicación y se\nmantiene mediante entradas externas. Ej: tabla de la base de datos.\n• Número de archivos de interfaz externos (AIE). Cada archivo de interfaz externo\nes un agrupamiento lógico de datos que reside fuera de la aplicación, pero que\nproporciona información que puede usar la aplicación. Ej: Api "
+  },
+  {
+    "title": "Metricas",
+    "page": 14,
+    "text": " interfaz externos (AIE). Cada archivo de interfaz externo\nes un agrupamiento lógico de datos que reside fuera de la aplicación, pero que\nproporciona información que puede usar la aplicación. Ej: Api externas."
+  },
+  {
+    "title": "Metricas",
+    "page": 15,
+    "text": "Usuario\nConsultas Externas\nConsultas\nEntradas Archivos\nOtra aplicación\nExternas Lógicos\nUsuario Archivos de Interfaz\nInternos\nExterna\nSistema\nSalidas Externas"
+  },
+  {
+    "title": "Metricas",
+    "page": 16,
+    "text": "• Una vez recolectados dichos datos, se completa la siguiente\ntabla y un valor de complejidad se asocia con cada conteo. Por\n: «\nejemplo Función de interacción con el usuario de un sw»."
+  },
+  {
+    "title": "Metricas",
+    "page": 17,
+    "text": "• Las organizaciones que usan métodos de\npunto de función desarrollan criterios para\ndeterminar si una entrada particular es\nsimple, promedio o compleja.\n• No obstante, la determinación de complejidad\nes un tanto subjetiva."
+  },
+  {
+    "title": "Metricas",
+    "page": 18,
+    "text": "Para calcular puntos de función (PF), se usa la\nsiguiente relación:\n• Los valores constantes en la ecuación y los factores\nponderados que se aplican a los conteos de dominio de\ninformación se determinan de manera empírica.\n• Factor de complejidad técnica es todo lo que se encuentra\nentre [].\n• F (i = 1 a 14): son factores de ajuste de valor (FAV) con base\ni\nen respuestas a las siguientes preguntas, cada una de estas\npreguntas se responde usando una escala que varía de 0\n(no importante o no aplicable) a 5 (absolutamente\nesencial)."
+  },
+  {
+    "title": "Metricas",
+    "page": 20,
+    "text": "1. ¿El sistema requiere respaldo y\nrecuperación confiables? • Comunicación de datos\n2. ¿Se requieren comunicaciones\nde datos especializadas para\ntransferir información hacia o\ndesde la aplicación?\n3. ¿Existen funciones de\n• Procesamiento Distribuido\nprocesamiento distribuidas?\n• Objetivos de rendimiento\n4. ¿El desempeño es crucial?\n• Configuración del equipo\n5. ¿El sistema correrá en un\nentorno operativo existente\nenormemente utilizado?\n6. ¿El sistema requiere entrada de • Entrada de datos en línea.\ndatos en línea?\n7. ¿La entrada de datos en línea\nrequiere que la transacción de\n• Tasa de transacciones. Interfaz\nentrada se construya sobre\ncon el usuario.\nmúltiples pantallas u\noperaciones?"
+  },
+  {
+    "title": "Metricas",
+    "page": 21,
+    "text": "• Actualizaciones en línea.\n8. ¿Los ALI se actualizan en\nlínea?\n9. ¿Las entradas, salidas, • Procesamiento complejo\narchivos o consultas son\ncomplejos?\n10. ¿El procesamiento interno es\ncomplejo?\n11. ¿El código se diseña para ser\n• Reusabilidad del código.\nreutilizable?\n• Facilidad de implementación\n12. ¿La conversión y la\ninstalación se incluyen en el\ndiseño?\n13. ¿El sistema se diseña para\n• Instalaciones múltiples\ninstalaciones múltiples en\ndiferentes organizaciones?\n14. ¿La aplicación se diseña para\n• Facilidad de cambios y de\nfacilitar el cambio y su uso\noperación.\npor parte del usuario?"
+  },
+  {
+    "title": "Metricas",
+    "page": 22,
+    "text": "Supongamos que Fi es 46 (un producto moderadamente complejo).\nEl equipo del proyecto puede estimar el tamaño global implementado de\nla «función de interacción del usuario».\nNota: los puntos de función pueden calcularse a partir de diagrama de\nflujo de datos, de clases UML y diagramas de secuencia.\nIFPUG(InterntionalFunction Point Users\nGroup)"
+  },
+  {
+    "title": "Metricas",
+    "page": 23,
+    "text": "Tabla IFPUG (International Function Point Users Group)\nLenguaje HS promedio por PF Líneas de código por PF\nEnsamblador 25 300\n2ª y 3ª Generación 15 100\n(COBOL, FORTRAN, PASCAL\ny MODULA)\n4º Generación (Java, C#, 8 20\nPython, PHP, JS, etc.)"
+  },
+  {
+    "title": "Metricas",
+    "page": 24,
+    "text": "Ejercicio 1\n• Estimar mediante la métrica de punto de función:\n1. El esfuerzo del proyecto informático (H/P).\nConsidere 8 horas promedio por punto de\nfunción.\n2. Duración en meses del proyecto. Considere 8\nhoras diarias, 20 días al mes.\n3. Costo del proyecto informático. Considere:\n1. Sueldo por desarrollador= $400000\n2. Otros costos = $1.000.000"
+  },
+  {
+    "title": "Metricas",
+    "page": 25,
+    "text": "Se consideran que las siguientes funciones son de\ncomplejidad media y que el factor de ajuste es de 32:\n1. Registrar clientes\n2. Registrar ventas\n3. Buscar ventas por fecha\n4. Actualizar datos del cliente\n5. Eliminar cliente\n6. Enviar notificación de promociones a clientes\n7. 1 reporte de los clientes registrados por rango de\nfechas\n8. 1 reporte de ventas\n9. 4 tablas en BD (Cliente, Venta, DetVta y Producto)"
+  },
+  {
+    "title": "Metricas",
+    "page": 26,
+    "text": "Solución\n• Horas/hombre = 72,75 * 8 = 582 horas/persona\n• Duración= 582/8 hs diarias de trabajo= 72,75 días\n– Si considero 20 días al mes = 72,75/20 = 3,64\nmeses/persona\n– Aproximado 3,64 meses por desarrollador.\n– Si tengo 2 desarrolladores = 1,82 meses/desarrollador\n• Presupuesto\n– Sueldo por desarrollador= $400000\n– Otros costos = $1.000.000\n– CT= (nº desarrolladores * sueldo * tiempo) + otros costos =\n(2* $400000 *1,82) + $1.000.000 = $2.455.000"
+  },
+  {
+    "title": "Metricas",
+    "page": 27,
+    "text": "Ejercicio 2\n• Un sistema tiene 15 entradas externas, 24\nsalidas externas, presenta 0 diferentes\nconsultas externas, gestiona 4 archivos lógicos\ninternos y tiene interfaz con 6 diferentes\nsistemas legados (6 AIE). Todos estos datos\nson de complejidad promedio (tomar tabla de\nponderación) y el sistema global es\nrelativamente simple (Fi = 25). Calcule PF para\nel sistema."
+  },
+  {
+    "title": "Metricas",
+    "page": 28,
+    "text": "Métricas para calidad de la\nespecificación\n• Se propone una lista de características que\npueden usarse para valorar la calidad del\nmodelo de requerimientos y la correspondiente\nespecificación de requerimientos:\n• Especificidad (falta de ambigüedad), completitud,\ncorrección, comprensibilidad, verificabilidad,\nconsistencia interna y externa, factibilidad,\nconcisión, rastreabilidad, modificable, precisión y\nreusabilidad."
+  },
+  {
+    "title": "Metricas",
+    "page": 29,
+    "text": "CARACTERÍSTICAS DESEABLES DE UNA\nERS\n• No ambigua: La ERS es no ambigua si todo requisito posee una sola\ninterpretación.\n• Completa: Una ERS es completa si todo lo que se supone que el software\ndebe hacer está incluido en la ERS. Por completitud, deberían describirse\ntodas las posibles respuestas a todas las posibles entradas y en todas las\nsituaciones posibles. Contemplar todos los escenarios posibles.\n• Correcta: Todo requisito de la ERS contribuye a satisfacer una necesidad real.\n• Comprensible: Todo tipo de lectores (clientes, usuarios, desarrolladores,\nequipo de pruebas, gestores, etc.) entienden la ERS.\n• Verificable: Si para cada requisito expresado en la ERS existe un\nprocedimiento de prueba finito y no costoso para demostrar que el futuro\nsistema lo satisface.\n• Internamente Consi"
+  },
+  {
+    "title": "Metricas",
+    "page": 29,
+    "text": "ntienden la ERS.\n• Verificable: Si para cada requisito expresado en la ERS existe un\nprocedimiento de prueba finito y no costoso para demostrar que el futuro\nsistema lo satisface.\n• Internamente Consistente: No existen subconjuntos de requisitos\ncontradictorios.\n• Externamente Consistente: Ninguno de los requisitos está en contradicción\ncon lo expresado en documentos de nivel superior. Por ejemplo, en un\nsistema (hardware+software), los requisitos del software no pueden\ncontradecir los requisitos del sistema."
+  },
+  {
+    "title": "Metricas",
+    "page": 30,
+    "text": "CARACTERÍSTICAS DESEABLES DE UNA\nERS\n• Factible: Si, dados los actuales recursos, la ERS se puede implementar.\n• Concisa: La ERS debe ser lo más breve posible, sin que esto afecte al resto\nde atributos de calidad.\n• Independiente del diseño: Existen más de un diseño e implementación\nque realizan la ERS. Para ello la ERS debería limitarse a describir el\ncomportamiento externo del sistema.\n• Trazable: Cada requisito se puede referenciar de forma unívoca. Es\nfundamental para precisar qué requisitos son implementados por qué\ncomponente del diseño, lo cual es imprescindible a la hora de realizar las\npruebas de dicho componente.\n• Modificable: Los cambios son fáciles de introducir. Determinar un nivel de\ncambio a cada requerimiento (bajo, medio, alto).\n• Precisa: Una ERS es precisa si hace uso d"
+  },
+  {
+    "title": "Metricas",
+    "page": 30,
+    "text": "s\npruebas de dicho componente.\n• Modificable: Los cambios son fáciles de introducir. Determinar un nivel de\ncambio a cada requerimiento (bajo, medio, alto).\n• Precisa: Una ERS es precisa si hace uso de valores numéricos para precisar\nlas características del sistema. La precisión es aplicable, ante todo, a los\nrequisitos no funcionales.\n• Reutilizable: Si ciertas secciones de la ERS se pueden reutilizar."
+  },
+  {
+    "title": "Metricas",
+    "page": 31,
+    "text": "• Cada una puede representarse usando una o\nmás métricas. Por ejemplo, se supone que\nexisten nr requerimientos en una\nespecificación, tales que nr = nf + nnf\n• donde nf es el número de requerimientos\nfuncionales y nnf es el número de\nrequerimientos no funcionales (por ejemplo,\nrendimiento)."
+  },
+  {
+    "title": "Metricas",
+    "page": 32,
+    "text": "Especificidad (falta de ambigüedad) de los\nrequerimientos:\n• Q1 = nui/nr\n• donde nui es el número de requerimientos\npara los cuales todos los revisores tienen\ninterpretaciones idénticas.\n• Mientras más cercano a 1 esté el valor de Q,\nmenor será la ambigüedad de la\nespecificación."
+  },
+  {
+    "title": "Metricas",
+    "page": 33,
+    "text": "La completitud de los requerimientos funcionales\n• Puede determinarse al calcular la razón:\n• Q2= nu / (ni x ns)\n• donde nu es el número de requerimientos funcionales\núnicos, ni es el número de entradas (estímulos) definidas o\nimplicadas por la especificación y ns es el número de\nestados especificados.\n• La razón Q2 mide el porcentaje de funciones necesarias\nque se especificaron para un sistema.\n• Sin embargo, no aborda requerimientos no funcionales.\n• Para ello se usa Q3 = nc /(nc + nnv)\ndonde nc es el numero de requerimientos que se validaron\ncomo correctos y nnv es el numero de requerimientos que no\nse han validado."
+  },
+  {
+    "title": "Metricas",
+    "page": 34,
+    "text": "Métricas para especificar requerimientos no\nfuncionales:"
+  },
+  {
+    "title": "Metricas",
+    "page": 35,
+    "text": "MÉTRICAS PARA EL MODELO DE\nDISEÑO\n“La arquitectura de un sistema\nes un marco general que describe\nsu forma y estructura: sus\ncomponentes y la manera en la\nque ajustan entre sí”.\nJerrold Grochow"
+  },
+  {
+    "title": "Metricas",
+    "page": 36,
+    "text": "• Del diseño arquitectónico\nMÉTRICAS\n• Para el diseño OO\n• orientadas a clase: suite CK\nPARA EL\n• orientadas a clase: suite MOOD\nMODELO\n• O.O propuestas por Lorenz y Kidd\n• De diseño en el nivel de\nDE\ncomponente\nDISEÑO\n• Orientadas a operación\n• De diseño de IU"
+  },
+  {
+    "title": "Metricas",
+    "page": 37,
+    "text": "Métricas del diseño arquitectónico\n• Se enfocan en características de la\narquitectura del programa con énfasis en la\nestructura arquitectónica y en la efectividad\nde los módulos o componentes dentro de la\narquitectura.\n• Dichas métricas son “caja negra” en tanto no\nrequieren conocimiento alguno del\nfuncionamiento interior de un componente de\nsoftware particular."
+  },
+  {
+    "title": "Metricas",
+    "page": 38,
+    "text": "Se pueden definir 3 medidas de complejidad del diseño de\nsoftware: complejidad estructural, complejidad de datos y\ncomplejidad del sistema.\nPor ejemplo para arquitecturas jerárquicas, la complejidad\nestructural de un módulo i se define de la forma:\n• S(i) = f2 (i)\nout\n• donde f (i) es el fan-out del módulo i.\nout\n• Fan-out: es el número de módulos que invoca\ndirectamente el modulo i.\nPor ejemplo el módulo clientes invoca a los módulos ventas\ny suscripción.\nEntonces la complejidad del módulo clientes es:\nS(clientes) = 22 = 4"
+  },
+  {
+    "title": "Metricas",
+    "page": 39,
+    "text": "La complejidad de datos ofrece un indicio de la\ncomplejidad que hay en la interfaz interna para un modulo i\ny se define como:\n• D(i) = v(i) / f (i) + 1\nout\n• donde v(i) es el numero de variables de entrada y salida\nque pasan hacia y desde el modulo i.\nPor ejemplo, v(i) = 21\nD(clientes) = 21 / (2+1) = 21/3 = 7\nLa complejidad del sistema se define como la suma de las\ncomplejidades estructural y de datos y se especifica como:\n• C(i) = S(i) + D(i)\nPara nuestro simple ejemplo:\nC(clientes)= 4 + 21/3 = 11"
+  },
+  {
+    "title": "Metricas",
+    "page": 40,
+    "text": "Conforme aumenta el valor de cada una de\nestas complejidades, la complejidad\narquitectónica global del sistema también\naumenta.\nEsto conduce a una mayor probabilidad de que\ntambién aumenten el esfuerzo de integración y\nel de pruebas."
+  },
+  {
+    "title": "Metricas",
+    "page": 41,
+    "text": "Del diseño orientado a objetos Tres grupos\nde métricas orientadas a objetos\nMétricas orientadas a la clase (CK).\nMétricas orientadas a la clase (MOOD) .\nMétricas de Lorenz y Kidd."
+  },
+  {
+    "title": "Metricas",
+    "page": 42,
+    "text": "Métricas orientadas a clase: la suite de\nmétricas CK\n• Chidamber y Kemerer (CK) propusieron uno de\nlos conjuntos de métricas de software OO de\nmayor referencia.\n• Los autores proponen seis métricas de diseño\nbasadas en clase para sistemas OO.\n• En ocasiones el simple valor que se obtiene para\nuna métrica o la comparación de una misma\nmétrica para dos sistemas distintos permite\nhacernos una idea de su nivel de calidad."
+  },
+  {
+    "title": "Metricas",
+    "page": 43,
+    "text": "1. Métodos ponderados por clase (MPC)\n1. Clase con 𝑛 métodos, de complejidad 𝑐1, … , 𝑐𝑛 . La complejidad se mide con alguna\nmétrica elegida.\n2. 𝑀𝑃𝐶 =\n∑(cid:3041)\n𝐶𝑖\n(cid:3036)(cid:2880)(cid:2869)\n2. Profundidad del árbol de herencia (PAH)\n1. Conforme crece la PAH, es probable que las clases de nivel inferior hereden muchos\nmétodos. Esto conduce a potenciales dificultades cuando se intenta predecir el\ncomportamiento de una clase y conduce a mayor complejidad de diseño.\n2. Grandes valores de PAH implican que muchos métodos pueden reutilizarse.\n3. Número de hijos (NDH)\n1. Conforme crece el numero de hijos, el reuso aumenta y la cantidad de pruebas\n(requeridas para ejercitar cada hijo en su contexto operativo) también aumentara.\n4. Acoplamiento entre clases de objetos (ACO)\n1. Valores altos co"
+  },
+  {
+    "title": "Metricas",
+    "page": 43,
+    "text": " de hijos, el reuso aumenta y la cantidad de pruebas\n(requeridas para ejercitar cada hijo en su contexto operativo) también aumentara.\n4. Acoplamiento entre clases de objetos (ACO)\n1. Valores altos complican las modificaciones y las pruebas . En general, los valores de\nACO para cada clase deben mantenerse tan bajos como sea razonable.\n5. Respuesta para una clase (RPC): es un conjunto de métodos que potencialmente pueden\nejecutarse en respuesta a un mensaje recibido por un objeto de dicha clase. Conforme aumenta\nla RPC, también los esfuerzos de las pruebas y la complejidad del diseño global de la clase.\n6. Falta de cohesión en métodos (FCOM): es el numero de métodos que acceden a uno o mas de\nlos mismos atributos. Si hay 6 métodos y 4 de ellos acceden a atributos comunes, FCOM = 4. Si\nningu"
+  },
+  {
+    "title": "Metricas",
+    "page": 43,
+    "text": "la clase.\n6. Falta de cohesión en métodos (FCOM): es el numero de métodos que acceden a uno o mas de\nlos mismos atributos. Si hay 6 métodos y 4 de ellos acceden a atributos comunes, FCOM = 4. Si\nninguno accede FCOM = 0. Es deseable mantener baja la FCOM."
+  },
+  {
+    "title": "Metricas",
+    "page": 44,
+    "text": "Métricas orientadas a clase: La suite\nde métricas MOOD\n• Factor de herencia de método (FHM)\n– El grado en el que la arquitectura de clase de un\nsistema OO utiliza la herencia tanto para métodos\ncomo para atributos.\n– Ofrece un indicio del impacto de la herencia sobre\nel software OO.\n• Factor de acoplamiento (FA)\n– Conforme el valor de FA aumenta, la complejidad\ndel software OO tambien aumentara"
+  },
+  {
+    "title": "Metricas",
+    "page": 45,
+    "text": "Métricas OO propuestas por Lorenz y\nKidd\n• Dividen las métricas basadas en clase en\ncuatro amplias categorías; cada una tiene una\nrelación en el diseño en el nivel de\ncomponentes:\n– Tamaño, herencia, internos y externos"
+  },
+  {
+    "title": "Metricas",
+    "page": 46,
+    "text": "Métricas OO propuestas por Lorenz y\nKidd\nMMééttrriiccaass MMééttrriiccaass\nTTaammaaññoo ddee\nHHeerreenncciiaa iinntteerrnnaass ddee eexxtteerrnnaass ddee\nuunnaa ccllaassee\nccllaassee ccllaassee\nSe enfocan en\nconteos de Se enfocan en\natributos y la forma en la se enfocan en\noperaciones que las la cohesión y\nExaminan el\npara una clase operaciones en los\nacoplamiento\nindividual y en se reutilizan a conflictos\ny el reuso.\nvalores lo largo de la orientados a\npromedio para jerarquía de código.\nel sistema OO clases.\ncomo un todo."
+  },
+  {
+    "title": "Metricas",
+    "page": 47,
+    "text": "Métricas de diseño en el nivel de\ncomponente\n• Se enfocan en las características internas de un\ncomponente de software e incluyen medidas\nde cohesión de módulo, acoplamiento y\ncomplejidad"
+  },
+  {
+    "title": "Metricas",
+    "page": 48,
+    "text": "Métricas orientadas a operación\n(métodos)\n• Tamaño promedio de operación (TOprom). El tamaño\npuede determinarse al contar el número de líneas de\ncódigo o el de mensajes enviados por el método. Conforme\naumenta el número de mensajes enviados por un solo\nmétodo, es probable que las responsabilidades no se hayan\nasignado bien dentro de una clase.\n• Complejidad de la operación (CO). Los métodos deben\nlimitarse a una responsabilidad específica, el diseñador\ndebe luchar por mantener la CO tan baja como sea posible.\n• Número promedio de parámetros por operación\n(NPprom). Mientras más grande sea el número de\nparámetros del método, más compleja es la colaboración\nentre objetos. En general, el NPprom debe mantenerse tan\nbajo como sea posible."
+  },
+  {
+    "title": "Metricas",
+    "page": 49,
+    "text": "Métricas de diseño de interfaz de\nusuario\n• “La correcta distribución de objetos visuales”\n– Posición de las entidades (gráficos, íconos, textos,\nmenús, ventanas, etc.) en la distribución de la\npantalla.\n– Frecuencia con la que se usa\n– La dificultad para moverse de una entidad a otra"
+  },
+  {
+    "title": "Metricas",
+    "page": 50,
+    "text": "Métricas de usabilidad y UX\nLos usuarios experimentan e interactúan con el software de diferentes formas. Así\ncomo es difícil clasificar las emociones de las personas, también es un desafío evaluar\nsu reacción al software. Si bien ninguna métrica de software puede comunicar la\ntotalidad de la experiencia de usuario, hay algunas que son útiles.\n• Métricas de UX. Las mediciones de UX suelen ser cualitativas y pueden incluir las\nrespuestas emocionales o corporales de los usuarios, como cuánto confían en el\nsoftware y cómo se mueven sus ojos a través de una interfaz de usuario.\n• Métricas de usabilidad. La usabilidad mide qué tan bien el software permite a los\nclientes alcanzar sus objetivos. La usabilidad se puede dividir en componentes más\npequeños, como los siguientes:\nFacilidad de descubri"
+  },
+  {
+    "title": "Metricas",
+    "page": 50,
+    "text": "lidad. La usabilidad mide qué tan bien el software permite a los\nclientes alcanzar sus objetivos. La usabilidad se puede dividir en componentes más\npequeños, como los siguientes:\nFacilidad de descubrimiento - eficiencia – memorabilidad - facilidad de aprendizaje –\nsatisfacción - accesibilidad, particularmente accesibilidad digital\n• Net Promoter Score (NPS). Refleja la voluntad de los clientes de recomendar una\naplicación a otros. Net Promoter Score - Puntuación neta del promotor - se\npresenta como un rango de números de 0 a 10. Los clientes con una puntuación de\n0 a 6 son Detractores; las puntuaciones 7 y 8 son Pasivos; y 9 y 10 son Promotores."
+  },
+  {
+    "title": "Metricas",
+    "page": 50,
+    "text": "tuaciones 7 y 8 son Pasivos; y 9 y 10 son Promotores."
+  },
+  {
+    "title": "Metricas",
+    "page": 51,
+    "text": "Métricas para el modelo de\nimplementación\nMÉTRICAS PARA CÓDIGO FUENTE"
+  },
+  {
+    "title": "Metricas",
+    "page": 52,
+    "text": "Halstead asignó leyes cuantitativas al desarrollo de\nsoftware usando un conjunto de medidas primitivas\nque pueden derivarse después de generar el código\no de que el diseño este completo. Las medidas son:\n• n1 = numero de operadores distintos en un\nprograma.\n• n2 = numero de operandos distintos en un\nprograma\n• N1 = numero total de ocurrencias de operador\n• N2 = numero total de ocurrencias de operando"
+  },
+  {
+    "title": "Metricas",
+    "page": 53,
+    "text": "Usos\n• Longitud de programa global, N = n log (n )+ n log (n )\n1 2 1 2 2 2\n• volumen mínimo potencial para un algoritmo, V = N log (n + n )\n2 1 2\n• volumen real (numero de bits requeridos para especificar un\nprograma),\n• nivel del programa (una medida de complejidad del software),\n• nivel del lenguaje (una constante para un lenguaje determinado),\nesfuerzo de desarrollo, tiempo de desarrollo e incluso el numero\nproyectado de fallas en el software.\nSe utiliza en herramientas como IBM® Application Discovery and\nDelivery Intelligence (ADDI) es una plataforma analítica para la\nmodernización de las aplicaciones. Utiliza tecnologías cognitivas para\nanalizar aplicaciones de mainframe y descubrir y comprender\nrápidamente las interdependencias de los cambios.\nSonarQube para diversos lenguajes de pro"
+  },
+  {
+    "title": "Metricas",
+    "page": 53,
+    "text": "aplicaciones. Utiliza tecnologías cognitivas para\nanalizar aplicaciones de mainframe y descubrir y comprender\nrápidamente las interdependencias de los cambios.\nSonarQube para diversos lenguajes de programación."
+  },
+  {
+    "title": "Metricas",
+    "page": 54,
+    "text": "Ejemplo para calcular las medidas de Halstead.\nCalcular las medidas de Halstead de longitud y esfuerzo para el\nsiguiente algoritmo:\n{ El número total de operadores (n1) son 10 y la cantidad\nfor (i=2;i<=n;i++) de operadores (N1) que hay son 23:\nfor (j=1;j<=i;j++)\nif (x[i]<x[j]) 2 {..} + 2 for(;;) + 5 = + 1 if + 3 ; + 1 (..) + 1 < + 2 <= + 2 ++\n{ 4 []\naux = x[i];\nx[i] = x[j]; El número total de operandos (n2) son 5 y la cantidad\nx[j] = aux; total (N2) son 22.\n} 7 i + 1 n + 6 j + 6 x + 2 aux\n}\nLa longitud es N = N1 + N2 = 23 + 22 = 45\nN es una simple medida del tamaño de un programa. Cuanto más grande sea el\ntamaño de N, mayor será la dificultad para comprender el programa y mayor el\nesfuerzo para mantenerlo."
+  },
+  {
+    "title": "Metricas",
+    "page": 55,
+    "text": "El volumen es V = N x log2(n)\n= 45 x log2 (10+5)\n= 175.8\n(nro. mínimo de bits necesarios para codificar el programa)\n• El esfuerzo es una medida del trabajo requerido para\ndesarrollar un programa. Desde el punto de vista del\nmantenimiento, el esfuerzo se puede interpretar como\nuna medida del trabajo requerido para comprender un\nsoftware ya desarrollado. Cuanto menor es su valor, más\nfácil será modificar el programa:\n• E= V * 1/L = V*(n1/2)*(N2/n2)=175,8*(5)*(22/5) = 3867,6\n• Tiempo de entendimiento o implementación:\nT=E/18= 214,87 segundos."
+  },
+  {
+    "title": "Metricas",
+    "page": 56,
+    "text": "MÉTRICAS PARA PRUEBAS"
+  },
+  {
+    "title": "Metricas",
+    "page": 57,
+    "text": "Métricas de Halstead Métricas para pruebas\naplicadas para probar orientadas a objetos\nEl esfuerzo de prueba\npuede estimarse usando\nmétricas derivadas de las\nmedidas de Halstead.\nLas métricas consideran\nEl esfuerzo de un\naspectos de\nmódulo/ la suma de\nencapsulación y\nesfuerzo de todos los\nherencia.\nmódulos del sistema."
+  },
+  {
+    "title": "Metricas",
+    "page": 58,
+    "text": "MÉTRICAS PARA\nMANTENIMIENTO"
+  },
+  {
+    "title": "Metricas",
+    "page": 59,
+    "text": "• Todas las métricas de software presentadas\nanteriormente pueden usarse para el\ndesarrollo de nuevo software y para el\nmantenimiento del software existente.\n• Sin embargo, se han propuesto métricas\ndiseñadas explícitamente para actividades de\nmantenimiento."
+  },
+  {
+    "title": "Metricas",
+    "page": 60,
+    "text": "Índice de madurez de software (IMS)\n• Proporciona un indicio de la estabilidad de un\nproducto de software (con base en cambios que\nocurran para cada versión del producto).\n• Conforme el IMS tiende a 1, el producto comienza a\nestabilizarse"
   }
 ]
