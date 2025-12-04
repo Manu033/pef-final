@@ -194,4 +194,30 @@ def build_index(pdf_dir: str = "pdfs"):
 # ENTRYPOINT
 # ===========================
 if __name__ == "__main__":
-    build_index("../data_pdfs")
+    import sys
+    
+    if "--profile" in sys.argv:
+        import cProfile
+        import pstats
+        from io import StringIO
+        
+        print("🔍 Ejecutando con profiling...\n")
+        profiler = cProfile.Profile()
+        profiler.enable()
+        
+        build_index("../data_pdfs")
+        
+        profiler.disable()
+        
+        s = StringIO()
+        stats = pstats.Stats(profiler, stream=s)
+        stats.strip_dirs()
+        stats.sort_stats('cumulative')
+        stats.print_stats(25)
+        
+        print("\n" + "="*80)
+        print("📊 PROFILING - Top 25 funciones por tiempo acumulado")
+        print("="*80)
+        print(s.getvalue())
+    else:
+        build_index("../data_pdfs")
